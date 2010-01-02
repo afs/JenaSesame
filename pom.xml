@@ -309,8 +309,7 @@ build.time.txt=${build.time.txt}
     <snapshotRepository>
       <id>jena-repo-dev</id>
       <name>Jena development repo</name>
-      <!--<url>sftp://openjena.org/var/repo-dev</url>-->
-      <url>file:tmp</url>
+      <url>sftp://openjena.org/var/repo-dev</url>
       <layout>default</layout>
     </snapshotRepository>
 
