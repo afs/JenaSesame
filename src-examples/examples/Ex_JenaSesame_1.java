@@ -9,6 +9,7 @@ package examples;
 import java.io.File ;
 
 import org.openjena.jenasesame.JenaSesame ;
+
 import org.openrdf.repository.Repository ;
 import org.openrdf.repository.RepositoryConnection ;
 import org.openrdf.repository.sail.SailRepository ;
@@ -21,6 +22,8 @@ import com.hp.hpl.jena.query.QueryExecution ;
 import com.hp.hpl.jena.query.QueryExecutionFactory ;
 import com.hp.hpl.jena.query.QueryFactory ;
 import com.hp.hpl.jena.rdf.model.Model ;
+import com.hp.hpl.jena.rdf.model.Resource ;
+import com.hp.hpl.jena.rdf.model.ResourceFactory ;
 import com.hp.hpl.jena.sparql.util.QueryExecUtils ;
 
 /** Example: Create an in-memory repository, load some RDF, and query it. */
@@ -37,6 +40,9 @@ public class Ex_JenaSesame_1
         c.close() ;
 
         RepositoryConnection conn = repo.getConnection();
+        
+        Resource r = ResourceFactory.createResource("http://example/") ;
+        
         //Model model = JenaSesame.createModel(conn) ;
         Dataset ds = JenaSesame.createDataset(conn) ;
         

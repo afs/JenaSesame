@@ -1,4 +1,4 @@
-== JenaSesame
+==== JenaSesame
 
 This package aims to provide a stable, long-term bridge bwteen the two systems.
  
@@ -16,14 +16,6 @@ Artifact:   jena-sesame
 == Source Code 
 
 http://github.com/afs/JenaSesame.git
-
-== Status
-
-Jena API over Sesame repositories works (full Jena API).
-
-== Efficiency (Jena API over Sesame)
-
-Not bad.  Calls are pass diretcly from the Jena graph or SPARQL 
 
 == Other
 

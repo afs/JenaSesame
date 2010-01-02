@@ -25,32 +25,26 @@ import com.hp.hpl.jena.sparql.engine.QueryEngineRegistry ;
 public class JenaSesame
 {
     private static boolean initialized = false ;
-    static QueryEngineFactory factory = new JenaSesameQueryEngineFactory() ;
+    private static QueryEngineFactory factory = new JenaSesameQueryEngineFactory() ;
     static { init () ; }
     
-    public static void init()
+    private static void init()
     {
-        if (initialized == true) return ;
+        if ( initialized == true )
+            return ;
         initialized = true ;
         QueryEngineRegistry.addFactory(factory) ;
     }
 
-    public QueryEngineFactory getQueryEngineFactory() { return factory ; }
+    private QueryEngineFactory getQueryEngineFactory() { return factory ; }
     
     /** Create a Model that is backed by a repository.
      *  The model is the triples seen with no specification of the context.  
      */
     public static Model createModel(RepositoryConnection connection)
     { 
-        Graph graph =  new GraphRepository(connection) ;
+        Graph graph = new GraphRepository(connection) ;
         return ModelFactory.createModelForGraph(graph) ;
-    }
-    
-    /** Create a dataset that is backed by a repository */ 
-    public static Dataset createDataset(RepositoryConnection connection)
-    {
-        DatasetGraph dsg = new JenaSesameDatasetGraph(connection) ;
-        return new DatasetImpl(dsg) ;
     }
     
     /** Create a model that is backed by a repository.
@@ -60,6 +54,13 @@ public class JenaSesame
     { 
         Graph graph =  new GraphRepository(connection, context) ;
         return ModelFactory.createModelForGraph(graph) ;
+    }
+
+    /** Create a dataset that is backed by a repository */ 
+    public static Dataset createDataset(RepositoryConnection connection)
+    {
+        DatasetGraph dsg = new JenaSesameDatasetGraph(connection) ;
+        return new DatasetImpl(dsg) ;
     }
 }
 
