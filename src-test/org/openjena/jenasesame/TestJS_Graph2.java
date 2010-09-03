@@ -14,7 +14,6 @@ import org.openrdf.sail.memory.MemoryStore ;
 
 import com.hp.hpl.jena.graph.Graph ;
 import com.hp.hpl.jena.shared.JenaException ;
-import com.hp.hpl.jena.tdb.junit.AbstractTestGraph2 ;
 
 public class TestJS_Graph2 extends AbstractTestGraph2
 {

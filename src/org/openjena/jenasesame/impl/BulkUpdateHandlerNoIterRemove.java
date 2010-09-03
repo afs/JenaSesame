@@ -1,5 +1,6 @@
 /*
  * (c) Copyright 2009 Talis Information Ltd.
+ * (c) Copyright 2010 Epimorphics Ltd.
  * All rights reserved.
  * [See end of file]
  */
@@ -8,7 +9,7 @@ package org.openjena.jenasesame.impl;
 
 import java.util.List ;
 
-import atlas.iterator.Iter ;
+import org.openjena.atlas.iterator.Iter ;
 
 import com.hp.hpl.jena.graph.BulkUpdateHandler ;
 import com.hp.hpl.jena.graph.GraphEvents ;
@@ -58,6 +59,7 @@ public class BulkUpdateHandlerNoIterRemove extends SimpleBulkUpdateHandler imple
 
 /*
  * (c) Copyright 2009 Talis Information Ltd.
+ * (c) Copyright 2010 Epimorphics Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

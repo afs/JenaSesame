@@ -1,5 +1,6 @@
 /*
  * (c) Copyright 2009 Talis Information Ltd.
+ * (c) Copyright 2010 Epimorphics Ltd.
  * All rights reserved.
  * [See end of file]
  */
@@ -19,6 +20,8 @@ import com.hp.hpl.jena.shared.Lock ;
 import com.hp.hpl.jena.shared.LockMRSW ;
 import com.hp.hpl.jena.sparql.ARQException ;
 import com.hp.hpl.jena.sparql.core.DatasetGraph ;
+import com.hp.hpl.jena.sparql.core.Quad ;
+import com.hp.hpl.jena.sparql.util.Context ;
 
 public class JenaSesameDatasetGraph implements DatasetGraph
 {
@@ -82,14 +85,76 @@ public class JenaSesameDatasetGraph implements DatasetGraph
     }
 
     @Override
-    public int size()
+    public long size()
     {
         return -1 ;
     }
+
+    @Override
+    public void add(Quad quad)
+    {}
+
+    @Override
+    public void addGraph(Node graphName, Graph graph)
+    {}
+
+    @Override
+    public boolean contains(Quad quad)
+    {
+        return false ;
+    }
+
+    @Override
+    public boolean contains(Node g, Node s, Node p, Node o)
+    {
+        return false ;
+    }
+
+    @Override
+    public void delete(Quad quad)
+    {}
+
+    @Override
+    public void deleteAny(Node g, Node s, Node p, Node o)
+    {}
+
+    @Override
+    public Iterator<Quad> find(Quad quad)
+    {
+        return null ;
+    }
+
+    @Override
+    public Iterator<Quad> find(Node g, Node s, Node p, Node o)
+    {
+        return null ;
+    }
+
+    @Override
+    public Context getContext()
+    {
+        return null ;
+    }
+
+    @Override
+    public boolean isEmpty()
+    {
+        return false ;
+    }
+
+    @Override
+    public void removeGraph(Node graphName)
+    {}
+
+    @Override
+    public void setDefaultGraph(Graph g)
+    {}
 }
 
 /*
  * (c) Copyright 2009 Talis Information Ltd.
+ * (c) Copyright 2010 Epimorphics Ltd.
+ * 
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

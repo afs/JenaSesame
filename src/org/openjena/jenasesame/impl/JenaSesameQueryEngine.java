@@ -6,6 +6,7 @@
 
 package org.openjena.jenasesame.impl;
 
+import org.openjena.atlas.lib.Closeable ;
 import org.openrdf.query.MalformedQueryException ;
 import org.openrdf.query.QueryEvaluationException ;
 import org.openrdf.query.QueryLanguage ;
@@ -16,7 +17,6 @@ import org.openrdf.repository.RepositoryException ;
 import com.hp.hpl.jena.query.Query ;
 import com.hp.hpl.jena.sparql.ARQException ;
 import com.hp.hpl.jena.sparql.algebra.Op ;
-import com.hp.hpl.jena.sparql.core.Closeable ;
 import com.hp.hpl.jena.sparql.core.DatasetGraph ;
 import com.hp.hpl.jena.sparql.engine.Plan ;
 import com.hp.hpl.jena.sparql.engine.PlanBase ;

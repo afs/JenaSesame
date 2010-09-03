@@ -1,5 +1,6 @@
 /*
  * (c) Copyright 2009 Talis Information Ltd.
+ * (c) Copyright 2010 Epimorphics Ltd.
  * All rights reserved.
  * [See end of file]
  */
@@ -16,12 +17,10 @@ import org.openrdf.repository.RepositoryConnection ;
 import org.openrdf.repository.RepositoryException ;
 import org.openrdf.repository.RepositoryResult ;
 
-import atlas.lib.NotImplemented ;
-
 import com.hp.hpl.jena.shared.JenaException ;
 import com.hp.hpl.jena.shared.PrefixMapping ;
-import com.hp.hpl.jena.tdb.graph.DatasetPrefixStorage ;
-import com.hp.hpl.jena.tdb.graph.GraphPrefixesProjection ;
+import com.hp.hpl.jena.sparql.ARQNotImplemented ;
+import com.hp.hpl.jena.sparql.core.DatasetPrefixStorage ;
 
 public class JenaSesameDatasetPrefixStorage implements DatasetPrefixStorage
 {
@@ -102,7 +101,7 @@ public class JenaSesameDatasetPrefixStorage implements DatasetPrefixStorage
     @Override
     public void loadPrefixMapping(String graphName, PrefixMapping pmap)
     {
-        throw new NotImplemented("loadPrefixMapping") ;
+        throw new ARQNotImplemented("loadPrefixMapping") ;
     }
 
     @Override
@@ -170,6 +169,7 @@ public class JenaSesameDatasetPrefixStorage implements DatasetPrefixStorage
 
 /*
  * (c) Copyright 2009 Talis Information Ltd.
+ * (c) Copyright 2010 Epimorphics Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

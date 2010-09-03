@@ -23,8 +23,8 @@ import com.hp.hpl.jena.graph.query.QueryHandler ;
 import com.hp.hpl.jena.graph.query.SimpleQueryHandler ;
 import com.hp.hpl.jena.shared.JenaException ;
 import com.hp.hpl.jena.shared.PrefixMapping ;
-import com.hp.hpl.jena.tdb.graph.DatasetPrefixStorage ;
-import com.hp.hpl.jena.tdb.graph.GraphBase2 ;
+import com.hp.hpl.jena.sparql.core.DatasetPrefixStorage ;
+import com.hp.hpl.jena.sparql.core.GraphBase2 ;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator ;
 import com.hp.hpl.jena.util.iterator.NiceIterator ;
 

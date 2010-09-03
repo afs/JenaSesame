@@ -1,11 +1,13 @@
 /*
  * (c) Copyright 2009 Talis Information Ltd.
+ * (c) Copyright 2010 Epimorphics Ltd.
  * All rights reserved.
  * [See end of file]
  */
 
 package org.openjena.jenasesame.impl;
 
+import org.openjena.atlas.io.IndentedWriter ;
 import org.openrdf.model.Value ;
 import org.openrdf.query.BindingSet ;
 import org.openrdf.query.QueryEvaluationException ;
@@ -18,7 +20,6 @@ import com.hp.hpl.jena.sparql.engine.binding.Binding ;
 import com.hp.hpl.jena.sparql.engine.binding.BindingMap ;
 import com.hp.hpl.jena.sparql.engine.iterator.QueryIteratorBase ;
 import com.hp.hpl.jena.sparql.serializer.SerializationContext ;
-import com.hp.hpl.jena.sparql.util.IndentedWriter ;
 
 public class QueryIteratorSesame extends QueryIteratorBase
 {
@@ -81,6 +82,7 @@ public class QueryIteratorSesame extends QueryIteratorBase
 
 /*
  * (c) Copyright 2009 Talis Information Ltd.
+ * (c) Copyright 2010 Epimorphics Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

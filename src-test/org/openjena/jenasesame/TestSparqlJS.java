@@ -7,7 +7,8 @@
 package org.openjena.jenasesame;
 
 import org.junit.Test ;
-import atlas.test.BaseTest ;
+import org.openjena.atlas.junit.BaseTest ;
+
 
 public class TestSparqlJS extends BaseTest
 {
