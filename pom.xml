@@ -33,6 +33,7 @@
     <this.root>${project.artifactId}-${project.version}</this.root>
     <ver.jena>2.6.3</ver.jena>
     <ver.arq>2.8.5</ver.arq>
+    <ver.sesame>2.3.2</ver.sesame>
   </properties>
 
   <dependencies>
@@ -85,14 +86,14 @@
     <dependency>
       <groupId>org.openrdf.sesame</groupId>
       <artifactId>sesame-runtime</artifactId>
-      <version>2.3.0</version>
+      <version>${ver.sesame}</version>
     </dependency>
 
     <!-- Maven does not pull this in from sesame-runtime (but ivy does) -->
     <dependency>
       <groupId>org.openrdf.sesame</groupId>
       <artifactId>sesame-sail-nativerdf</artifactId>
-      <version>2.3.0</version>
+      <version>${ver.sesame}</version>
     </dependency>
     
     <!-- Choose logging -->
