@@ -31,19 +31,12 @@
 
   <properties>
     <this.root>${project.artifactId}-${project.version}</this.root>
-    <ver.jena>2.6.3</ver.jena>
-    <ver.arq>2.8.5</ver.arq>
+    <ver.jena>2.6.4</ver.jena>
+    <ver.arq>2.8.7</ver.arq>
+    <ver.sesame>2.3.2</ver.sesame>
   </properties>
 
   <dependencies>
-
-    <!-- Brings in all of Jena and ARQ needed at runtime + some utilities + sources 
-    <dependency>
-      <groupId>com.hp.hpl.jena</groupId>
-      <artifactId>tdb</artifactId>
-      <version>0.8.5-SNAPSHOT</version>
-    </dependency>
-    -->
 
     <!-- Jena and ARQ - including testing support -->
 
@@ -85,14 +78,14 @@
     <dependency>
       <groupId>org.openrdf.sesame</groupId>
       <artifactId>sesame-runtime</artifactId>
-      <version>2.3.0</version>
+      <version>${ver.sesame}</version>
     </dependency>
 
     <!-- Maven does not pull this in from sesame-runtime (but ivy does) -->
     <dependency>
       <groupId>org.openrdf.sesame</groupId>
       <artifactId>sesame-sail-nativerdf</artifactId>
-      <version>2.3.0</version>
+      <version>${ver.sesame}</version>
     </dependency>
     
     <!-- Choose logging -->

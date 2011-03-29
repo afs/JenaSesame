@@ -18,22 +18,26 @@ import com.hp.hpl.jena.sparql.util.Context ;
 public class JenaSesameQueryEngineFactory implements QueryEngineFactory
 {
     // Accept any dataset for query execution 
+    @Override
     public boolean accept(Query query, DatasetGraph dataset, Context context) 
     { 
         return ( dataset instanceof JenaSesameDatasetGraph ) ;
     }
 
+    @Override
     public Plan create(Query query, DatasetGraph dataset, Binding initial, Context context)
     {
         JenaSesameQueryEngine engine = new JenaSesameQueryEngine(query, (JenaSesameDatasetGraph)dataset, initial, context) ;
         return engine.getPlan() ;
     }
 
+    @Override
     public boolean accept(Op op, DatasetGraph dataset, Context context)
     {
         return false ;
     }
 
+    @Override
     public Plan create(Op op, DatasetGraph dataset, Binding inputBinding, Context context)
     {
         throw new ARQInternalErrorException("JenaSesameQueryEngineFactory: factory called directly with an algebra expression") ;

@@ -24,11 +24,10 @@ import com.hp.hpl.jena.graph.query.SimpleQueryHandler ;
 import com.hp.hpl.jena.shared.JenaException ;
 import com.hp.hpl.jena.shared.PrefixMapping ;
 import com.hp.hpl.jena.sparql.core.DatasetPrefixStorage ;
-import com.hp.hpl.jena.sparql.core.GraphBase2 ;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator ;
 import com.hp.hpl.jena.util.iterator.NiceIterator ;
 
-public class GraphRepository extends GraphBase2
+public class GraphRepository extends com.hp.hpl.jena.sparql.graph.GraphBase2
 {
     private RepositoryConnection connection ;
     private ValueFactory valueFactory ;

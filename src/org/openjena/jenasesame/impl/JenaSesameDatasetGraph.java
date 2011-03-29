@@ -1,6 +1,6 @@
 /*
  * (c) Copyright 2009 Talis Information Ltd.
- * (c) Copyright 2010 Epimorphics Ltd.
+ * (c) Copyright 2010, 2011 Epimorphics Ltd.
  * All rights reserved.
  * [See end of file]
  */
@@ -25,7 +25,6 @@ import com.hp.hpl.jena.sparql.util.Context ;
 
 public class JenaSesameDatasetGraph implements DatasetGraph
 {
-
     private Lock lock = new LockMRSW() ;
     private RepositoryConnection connection ;
 
@@ -131,6 +130,18 @@ public class JenaSesameDatasetGraph implements DatasetGraph
     }
 
     @Override
+    public Iterator<Quad> find()
+    {
+        return null ;
+    }
+
+    @Override
+    public Iterator<Quad> findNG(Node g, Node s, Node p, Node o)
+    {
+        return null ;
+    }
+
+    @Override
     public Context getContext()
     {
         return null ;
@@ -153,7 +164,7 @@ public class JenaSesameDatasetGraph implements DatasetGraph
 
 /*
  * (c) Copyright 2009 Talis Information Ltd.
- * (c) Copyright 2010 Epimorphics Ltd.
+ * (c) Copyright 2010, 2011 Epimorphics Ltd.
  * 
  * All rights reserved.
  *
