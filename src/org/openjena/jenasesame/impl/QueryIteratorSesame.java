@@ -8,6 +8,7 @@
 package org.openjena.jenasesame.impl;
 
 import org.openjena.atlas.io.IndentedWriter ;
+import org.openjena.atlas.lib.NotImplemented ;
 import org.openrdf.model.Value ;
 import org.openrdf.query.BindingSet ;
 import org.openrdf.query.QueryEvaluationException ;
@@ -17,6 +18,7 @@ import com.hp.hpl.jena.graph.Node ;
 import com.hp.hpl.jena.sparql.ARQException ;
 import com.hp.hpl.jena.sparql.core.Var ;
 import com.hp.hpl.jena.sparql.engine.binding.Binding ;
+import com.hp.hpl.jena.sparql.engine.binding.BindingFactory ;
 import com.hp.hpl.jena.sparql.engine.binding.BindingMap ;
 import com.hp.hpl.jena.sparql.engine.iterator.QueryIteratorBase ;
 import com.hp.hpl.jena.sparql.serializer.SerializationContext ;
@@ -60,7 +62,7 @@ public class QueryIteratorSesame extends QueryIteratorBase
         try
         {
             BindingSet bindingSet = result.next();
-            BindingMap arqBinding = new BindingMap() ;
+            BindingMap arqBinding = BindingFactory.create();
             
             for ( String vn : result.getBindingNames() )
             {
@@ -78,6 +80,10 @@ public class QueryIteratorSesame extends QueryIteratorBase
     @Override
     public void output(IndentedWriter out, SerializationContext sCxt)
     {}
+
+    @Override
+    protected void requestCancel()
+    { throw new NotImplemented() ; }
 }
 
 /*

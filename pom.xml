@@ -31,9 +31,9 @@
 
   <properties>
     <this.root>${project.artifactId}-${project.version}</this.root>
-    <ver.jena>2.6.4</ver.jena>
-    <ver.arq>2.8.7</ver.arq>
-    <ver.sesame>2.3.2</ver.sesame>
+    <ver.jena>2.7.0-incubating</ver.jena>
+    <ver.arq>2.9.0-incubating</ver.arq>
+    <ver.sesame>2.6.2</ver.sesame>
   </properties>
 
   <dependencies>
@@ -41,27 +41,27 @@
     <!-- Jena and ARQ - including testing support -->
 
     <dependency>
-      <groupId>com.hp.hpl.jena</groupId>
-      <artifactId>jena</artifactId>
+      <groupId>org.apache.jena</groupId>
+      <artifactId>jena-core</artifactId>
       <version>${ver.jena}</version>
     </dependency>
 
     <dependency>
-      <groupId>com.hp.hpl.jena</groupId>
-      <artifactId>jena</artifactId>
+      <groupId>org.apache.jena</groupId>
+      <artifactId>jena-core</artifactId>
       <classifier>tests</classifier>
       <version>${ver.jena}</version>
     </dependency>
 
     <dependency>
-      <groupId>com.hp.hpl.jena</groupId>
-      <artifactId>arq</artifactId>
+      <groupId>org.apache.jena</groupId>
+      <artifactId>jena-arq</artifactId>
       <version>${ver.arq}</version>
     </dependency>
 
     <dependency>
-      <groupId>com.hp.hpl.jena</groupId>
-      <artifactId>arq</artifactId>
+      <groupId>org.apache.jena</groupId>
+      <artifactId>jena-arq</artifactId>
       <classifier>tests</classifier>
       <version>${ver.arq}</version>
     </dependency>
@@ -69,7 +69,7 @@
      <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.5</version>
+      <version>[4.9,)</version>
       <scope>test</scope>
     </dependency>
 
@@ -93,7 +93,7 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
-      <version>1.5.8</version>
+      <version>[1.5.8,)</version>
     </dependency>
 
     <dependency>
@@ -176,7 +176,7 @@
           <encoding>UTF-8</encoding>
           <windowtitle>${project.name} ${project.version}</windowtitle>
           <doctitle>${project.name} ${project.version}</doctitle>
-	  <!-- include com.hp.hpl.jena.query,com.hp.hpl.jena.update,com.hp.hpl.jena.query.larq -->
+	  <!-- include org.apache.jena.query,org.apache.jena.update,org.apache.jena.query.larq -->
           <!-- Exclude the implementation -->
           <includePackageNames>org.openjena.jenasesame,org.openjena.sesamejena</includePackageNames>
           <bottom>Copyright &#169; 2009 Talis Information Ltd</bottom>
@@ -258,38 +258,27 @@ build.time.txt=${build.time.txt}
 
   </build>
 
- <repositories>
-
-    <!-- jena-repo is mirrored to Maven central repository -->
-    <!-- In case mirroring has not happened yet ... -->
+  <repositories>
     <repository>
-      <id>repo-jena</id>
-      <name>Jena Maven - Repository</name>
-      <layout>default</layout>
-      <url>http://openjena.org/repo</url>
+      <id>apache-repo.releases</id>
+      <name>Apache Release Repository</name>
+      <url>https://repository.apache.org/content/repositories/releases/</url>
+      <releases>
+	<enabled>false</enabled>
+      </releases>
       <snapshots>
-        <enabled>false</enabled>
+	<enabled>true</enabled>
+	<updatePolicy>daily</updatePolicy>
+       <checksumPolicy>fail</checksumPolicy>
       </snapshots>
     </repository>
-
-    <!-- jena-repo-dev is where SNAPSHOTs and RCs are published -->  
-    <repository>
-      <id>repo-jena-dev</id>
-      <name>Jena Maven - Development Repository</name>
-      <layout>default</layout>
-      <url>http://openjena.org/repo-dev</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-
+    
     <repository>
       <id>repo-openrdf</id>
       <name>OpenRDF releases</name>
       <layout>default</layout>
       <url>http://repo.aduna-software.org/maven2/releases</url>
     </repository>
-
   </repositories>
 
   <distributionManagement>

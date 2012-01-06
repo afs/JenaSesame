@@ -1,6 +1,6 @@
 /*
  * (c) Copyright 2009 Talis Information Ltd.
- * (c) Copyright 2010, 2011 Epimorphics Ltd.
+ * (c) Copyright 2010, 2011, 2012 Epimorphics Ltd.
  * All rights reserved.
  * [See end of file]
  */
@@ -92,6 +92,10 @@ public class JenaSesameDatasetGraph implements DatasetGraph
     @Override
     public void add(Quad quad)
     {}
+    
+    @Override
+    public void add(Node g, Node s, Node p, Node o)
+    {}
 
     @Override
     public void addGraph(Node graphName, Graph graph)
@@ -111,6 +115,10 @@ public class JenaSesameDatasetGraph implements DatasetGraph
 
     @Override
     public void delete(Quad quad)
+    {}
+
+    @Override
+    public void delete(Node g, Node s, Node p, Node o)
     {}
 
     @Override
@@ -164,7 +172,7 @@ public class JenaSesameDatasetGraph implements DatasetGraph
 
 /*
  * (c) Copyright 2009 Talis Information Ltd.
- * (c) Copyright 2010, 2011 Epimorphics Ltd.
+ * (c) Copyright 2010, 2011, 2012 Epimorphics Ltd.
  * 
  * All rights reserved.
  *

@@ -1,6 +1,6 @@
 /*
  * (c) Copyright 2009 Talis Information Ltd.
- * (c) Copyright 2010 Epimorphics Ltd.
+ * (c) Copyright 2010, 2011, 2012 Epimorphics Ltd.
  * All rights reserved.
  * [See end of file]
  */
@@ -157,11 +157,6 @@ public class JenaSesameDatasetPrefixStorage implements DatasetPrefixStorage
     { }
 
     @Override
-    public void sync(boolean force)
-    {}
-
-
-    @Override
     public void sync()
     {}
 
@@ -169,7 +164,7 @@ public class JenaSesameDatasetPrefixStorage implements DatasetPrefixStorage
 
 /*
  * (c) Copyright 2009 Talis Information Ltd.
- * (c) Copyright 2010 Epimorphics Ltd.
+ * (c) Copyright 2010, 2011, 2012 Epimorphics Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

@@ -1,5 +1,6 @@
 /*
  * (c) Copyright 2009 Talis Information Ltd.
+ * (c) Copyright 2010, 2011, 2012 Epimorphics Ltd.
  * All rights reserved.
  * [See end of file]
  */
@@ -14,10 +15,10 @@ import org.openrdf.repository.RepositoryConnection ;
 
 import com.hp.hpl.jena.graph.Graph ;
 import com.hp.hpl.jena.query.Dataset ;
+import com.hp.hpl.jena.query.DatasetFactory ;
 import com.hp.hpl.jena.rdf.model.Model ;
 import com.hp.hpl.jena.rdf.model.ModelFactory ;
 import com.hp.hpl.jena.sparql.core.DatasetGraph ;
-import com.hp.hpl.jena.sparql.core.DatasetImpl ;
 import com.hp.hpl.jena.sparql.engine.QueryEngineFactory ;
 import com.hp.hpl.jena.sparql.engine.QueryEngineRegistry ;
 
@@ -60,12 +61,13 @@ public class JenaSesame
     public static Dataset createDataset(RepositoryConnection connection)
     {
         DatasetGraph dsg = new JenaSesameDatasetGraph(connection) ;
-        return new DatasetImpl(dsg) ;
+        return DatasetFactory.create(dsg) ;
     }
 }
 
 /*
  * (c) Copyright 2009 Talis Information Ltd.
+ * (c) Copyright 2010, 2011, 2012 Epimorphics Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
