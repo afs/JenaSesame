@@ -7,7 +7,7 @@
   <artifactId>jena-sesame</artifactId>
   <packaging>jar</packaging>
   <name>JenaSesame</name>
-  <version>0.0.0-SNAPSHOT</version>
+  <version>0.1.0-SNAPSHOT</version>
 
   <description>Jena API over a Sesame reposiroty</description>
   <url>http://openjena.org/ARQ</url>
@@ -33,7 +33,7 @@
     <this.root>${project.artifactId}-${project.version}</this.root>
     <ver.jena>2.6.4</ver.jena>
     <ver.arq>2.8.7</ver.arq>
-    <ver.sesame>2.3.2</ver.sesame>
+    <ver.sesame>2.6.1</ver.sesame>
   </properties>
 
   <dependencies>
