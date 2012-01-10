@@ -15,7 +15,12 @@ public class LiteralJena extends LiteralImpl implements Literal
 {
     //private Node_Literal nodeLiteral ;
 
-    public LiteralJena(Node_Literal nodeLiteral)
+    /**
+	 * Serial Version UID
+	 */
+	private static final long serialVersionUID = -5733579375071044561L;
+
+	public LiteralJena(Node_Literal nodeLiteral)
     {
         //this.nodeLiteral = nodeLiteral ;
         super.setDatatype(getDatatype()) ;
