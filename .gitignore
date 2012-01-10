@@ -10,3 +10,7 @@ src-dev
 D.ttl
 .externalToolBuilders
 maven-eclipse.xml
+.classpath
+.project
+.settings
+*~
