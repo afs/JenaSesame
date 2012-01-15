@@ -4,7 +4,7 @@
  * [See end of file]
  */
 
-package examples;
+package org.openjena.jenasesame.examples;
 
 import java.io.File ;
 
