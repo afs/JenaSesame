@@ -1,95 +1,98 @@
 /*
- * (c) Copyright 2009 Talis Information Ltd.
- * All rights reserved.
- * [See end of file]
+ * (c) Copyright 2009 Talis Information Ltd. All rights reserved. [See end of file]
  */
 
 package org.openjena.sesamejena.impl;
 
-import org.openrdf.model.BNode ;
-import org.openrdf.model.Literal ;
-import org.openrdf.model.Resource ;
-import org.openrdf.model.Statement ;
-import org.openrdf.model.URI ;
-import org.openrdf.model.Value ;
-import org.openrdf.model.ValueFactory ;
-import org.openrdf.model.impl.ValueFactoryBase ;
+import org.openrdf.model.BNode;
+import org.openrdf.model.Literal;
+import org.openrdf.model.Statement;
+import org.openrdf.model.URI;
+import org.openrdf.model.Value;
+import org.openrdf.model.ValueFactory;
+import org.openrdf.model.impl.ValueFactoryBase;
+import org.openrdf.model.impl.ValueFactoryImpl;
 
-public class ValueFactoryJena extends ValueFactoryBase implements ValueFactory
+import com.hp.hpl.jena.rdf.model.AnonId;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Resource;
+
+public class ValueFactoryJena
 {
-
-    @Override
-    public BNode createBNode(String nodeID)
+    private ValueFactory valueFactory = new ValueFactoryImpl();
+    
+    public BNode createBNode(Resource anonResource)
     {
-        return null ;
+        if(!anonResource.isAnon())
+        {
+            throw new IllegalArgumentException(
+                    "Cannot create an OpenRDF Blank Node from this Jena Resource as it is not anonymous");
+        }
+        
+        return valueFactory.createBNode(anonResource.getId().getLabelString());
     }
-
-    @Override
-    public Literal createLiteral(String label)
+    
+    public Literal createLiteral(Resource literalResource)
     {
-        return null ;
-    }
+        if(!literalResource.isLiteral())
+        {
+            throw new IllegalArgumentException(
+                    "Cannot create an OpenRDF Literal from this Jena Resource as it is not a literal");
+        }
+        
+        com.hp.hpl.jena.rdf.model.Literal asLiteral = literalResource.asLiteral();
+        
+        if(asLiteral.getLanguage() != null && !"".equals(asLiteral.getLanguage()))
+        {
+            return valueFactory.createLiteral(asLiteral.getString(), asLiteral.getLanguage());
+        }
+        else if(asLiteral.getDatatypeURI() == null)
+        {
+            return valueFactory.createLiteral(asLiteral.getString());
+        }
 
-    @Override
-    public Literal createLiteral(String label, String language)
-    {
-        return null ;
+	return null;    
     }
-
-    @Override
-    public Literal createLiteral(String label, URI datatype)
-    {
-        return null ;
-    }
-
-    @Override
+    
     public Statement createStatement(Resource subject, URI predicate, Value object)
     {
-        return null ;
+        return null;
     }
-
-    @Override
+    
     public Statement createStatement(Resource subject, URI predicate, Value object, Resource context)
     {
-        return null ;
+        return null;
     }
-
-    @Override
+    
     public URI createURI(String uri)
     {
-        return null ;
+        return null;
     }
-
-    @Override
+    
     public URI createURI(String namespace, String localName)
     {
-        return null ;
+        return null;
     }
 }
 
 /*
- * (c) Copyright 2009 Talis Information Ltd.
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- * 3. The name of the author may not be used to endorse or promote products
- *    derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
- * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
- * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
- * IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
- * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
- * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
- * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * (c) Copyright 2009 Talis Information Ltd. All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are permitted
+ * provided that the following conditions are met: 1. Redistributions of source code must retain the
+ * above copyright notice, this list of conditions and the following disclaimer. 2. Redistributions
+ * in binary form must reproduce the above copyright notice, this list of conditions and the
+ * following disclaimer in the documentation and/or other materials provided with the distribution.
+ * 3. The name of the author may not be used to endorse or promote products derived from this
+ * software without specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+ * PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+ * TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
