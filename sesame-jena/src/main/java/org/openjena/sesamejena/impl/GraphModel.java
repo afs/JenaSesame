@@ -34,8 +34,10 @@ public class GraphModel extends GraphImpl implements Graph, Collection<Statement
     
     private Model jenaModel;
 
-    public GraphModel(Model nextJenaModel)
+    public GraphModel(ValueFactory factory, Model nextJenaModel)
     {
+        super(factory);
+        
         this.jenaModel = nextJenaModel;
     }
     

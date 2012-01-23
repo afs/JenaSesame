@@ -8,14 +8,30 @@ package org.openjena.sesamejena;
 
 import org.openjena.sesamejena.impl.GraphModel;
 import org.openrdf.model.Graph;
+import org.openrdf.model.ValueFactory;
 
 import com.hp.hpl.jena.rdf.model.Model;
 
+/**
+ * Class to enable the use of OpenRDF Sesame interfaces to access Jena models
+ * 
+ * @author Peter Ansell p_ansell@yahoo.com
+ *
+ */
 public class SesameJena
 {
-    public static Graph createGraph(Model model)
+    /**
+     * Creates a Sesame Graph wrapper around a Jena Model.
+     * 
+     * This makes it possible to access the Jena Model using any of the Graph interface methods, including the Collection<Statement> methods
+     * 
+     * @param factory The Sesame ValueFactory to use when creating Sesame Values from Jena Nodes.
+     * @param model A Jena Model to wrap.
+     * @return A Sesame Graph that can be used to access the given Jena Model.
+     */
+    public static Graph createGraph(ValueFactory factory, Model model)
     {
-        return new GraphModel(model);
+        return new GraphModel(factory, model);
     }
 }
 
