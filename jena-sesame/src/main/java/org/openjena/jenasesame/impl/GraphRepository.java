@@ -15,6 +15,8 @@ import org.openrdf.model.ValueFactory ;
 import org.openrdf.repository.RepositoryConnection ;
 import org.openrdf.repository.RepositoryException ;
 import org.openrdf.repository.RepositoryResult ;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.graph.BulkUpdateHandler ;
 import com.hp.hpl.jena.graph.Node ;
@@ -30,6 +32,8 @@ import com.hp.hpl.jena.util.iterator.NiceIterator ;
 
 public class GraphRepository extends com.hp.hpl.jena.sparql.graph.GraphBase2
 {
+    private static final Logger LOG = LoggerFactory.getLogger(GraphRepository.class);
+    
     private RepositoryConnection connection ;
     private ValueFactory valueFactory ;
     private Resource[] contexts ;
@@ -55,20 +59,12 @@ public class GraphRepository extends com.hp.hpl.jena.sparql.graph.GraphBase2
     @Override
     public void performAdd( Triple t )
     { 
-        Node s = t.getSubject() ;
-        Node p = t.getPredicate() ;
-        Node o = t.getObject() ;
-        
-        Resource subj   = Convert.nodeToValueResource(valueFactory, s) ;
-        URI pred        = Convert.nodeURIToValue(valueFactory, p) ;
-        Value obj       = Convert.nodeToValue(valueFactory, o) ;
-        
         try
         {
-            connection.add(subj, pred, obj, contexts) ; 
+            connection.add(Convert.tripleToStatement(valueFactory, t), contexts) ; 
         } catch (RepositoryException ex)
         {
-            ex.printStackTrace(System.err) ;
+            LOG.error("Repository exception in performAdd", ex) ;
             throw new JenaException(ex) ;
         } 
     }
@@ -82,20 +78,12 @@ public class GraphRepository extends com.hp.hpl.jena.sparql.graph.GraphBase2
     @Override
     public void performDelete( Triple t ) 
     { 
-        Node s = t.getSubject() ;
-        Node p = t.getPredicate() ;
-        Node o = t.getObject() ;
-        
-        Resource subj   = Convert.nodeToValueResource(valueFactory, s) ;
-        URI pred        = Convert.nodeURIToValue(valueFactory, p) ;
-        Value obj       = Convert.nodeToValue(valueFactory, o) ;
-        
         try
         {
-            connection.remove(subj, pred, obj, contexts) ;
+            connection.remove(Convert.tripleToStatement(valueFactory, t), contexts) ;
         } catch (RepositoryException ex)
         {
-            ex.printStackTrace(System.err) ;
+            LOG.error("Repository exception in performDelete", ex) ;
             throw new JenaException(ex) ;
         } 
     }
@@ -118,7 +106,7 @@ public class GraphRepository extends com.hp.hpl.jena.sparql.graph.GraphBase2
             return new RepositoryResultIterator(iter1) ;
         } catch (RepositoryException ex)
         {
-            ex.printStackTrace(System.err) ;
+            LOG.error("Repository exception in graphBaseFind", ex);
             throw new JenaException(ex) ;
         } 
     }
