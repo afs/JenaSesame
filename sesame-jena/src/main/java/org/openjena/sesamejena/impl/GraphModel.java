@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import org.openjena.jenasesame.util.Convert;
+import org.openjena.jenasesame.util.JenaStatementToSesameStatementIterator;
 import org.openrdf.model.Graph;
 import org.openrdf.model.Resource;
 import org.openrdf.model.Statement;
@@ -23,7 +24,7 @@ import com.hp.hpl.jena.rdf.model.RDFNode;
  * @author Peter Ansell p_ansell@yahoo.com
  *
  */
-public class GraphModel extends GraphImpl implements Graph
+public class GraphModel extends GraphImpl implements Graph, Collection<Statement>
 {
     
     /**
@@ -157,8 +158,7 @@ public class GraphModel extends GraphImpl implements Graph
     @Override
     public Iterator<Statement> iterator()
     {
-        // TODO Auto-generated method stub
-        return null;
+        return new JenaStatementToSesameStatementIterator(this.getValueFactory(), this.jenaModel.listStatements());
     }
     
     /* (non-Javadoc)
@@ -218,11 +218,7 @@ public class GraphModel extends GraphImpl implements Graph
     @Override
     public boolean retainAll(Collection<?> arg0)
     {
-        boolean change = false;
-        
-        // TODO: Implement me!
-        
-        return change;
+        throw new UnsupportedOperationException("Retain all is not supported by this collection.");
     }
     
     /* (non-Javadoc)
@@ -240,18 +236,17 @@ public class GraphModel extends GraphImpl implements Graph
     @Override
     public Object[] toArray()
     {
-        // TODO Auto-generated method stub
-        return null;
+        return this.jenaModel.listStatements().toList().toArray();
     }
     
     /* (non-Javadoc)
      * @see java.util.Collection#toArray(T[])
      */
+    @SuppressWarnings("unchecked")
     @Override
     public <T> T[] toArray(T[] arg0)
     {
-        // TODO Auto-generated method stub
-        return null;
+        return (T[])this.jenaModel.listStatements().toList().toArray(new Object[this.size()]);
     }
     
     /* (non-Javadoc)
@@ -299,11 +294,7 @@ public class GraphModel extends GraphImpl implements Graph
             object = (com.hp.hpl.jena.rdf.model.RDFNode)Convert.valueToNode(obj);
         }
         
-        this.jenaModel.contains(subject, property, object);
-        
-        // TODO: Implement me!
-        
-        return null;
+        return new JenaStatementToSesameStatementIterator(this.getValueFactory(), this.jenaModel.listStatements(subject, property, object));
     }
     
 }
