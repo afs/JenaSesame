@@ -67,7 +67,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 				<artifactId>jena-sesame-common</artifactId>
 				<version>${ver.jenasesame}</version>
 			</dependency>
-			
+
 			<!-- Jena and ARQ - including testing support -->
 
 			<dependency>
@@ -216,7 +216,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 						</execution>
 					</executions>
 				</plugin>
-				
+
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
@@ -311,26 +311,49 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		</pluginRepository>
 	</pluginRepositories>
 
-	<distributionManagement>
-		<downloadUrl>http://openjena.org/repo-dev</downloadUrl>
+	<profiles>
+		<profile>
+			<id>metadatanet-deploy</id>
+			<distributionManagement>
+				<repository>
+					<id>maenad-releases</id>
+					<name>maenad-releases</name>
+					<url>http://maven.metadata.net/artifactory/libs-releases-local</url>
+				</repository>
+				<snapshotRepository>
+					<id>maenad-snapshots</id>
+					<name>maenad-snapshots</name>
+					<url>http://maven.metadata.net/artifactory/libs-snapshots-local</url>
+				</snapshotRepository>
+			</distributionManagement>
+		</profile>
+		<profile>
+			<id>openjena-deploy</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<distributionManagement>
+				<downloadUrl>http://openjena.org/repo-dev</downloadUrl>
 
-		<!-- In development - release to development repo -->
+				<!-- In development - release to development repo -->
 
-		<repository>
-			<id>jena-repo</id>
-			<name>Jena repo</name>
-			<!--<url>sftp://openjena.org/var/repo</url> -->
-			<url>sftp://openjena.org/var/repo-dev</url>
-			<!--<url>file:tmp</url> -->
-			<layout>default</layout>
-		</repository>
+				<repository>
+					<id>jena-repo</id>
+					<name>Jena repo</name>
+					<!--<url>sftp://openjena.org/var/repo</url> -->
+					<url>sftp://openjena.org/var/repo-dev</url>
+					<!--<url>file:tmp</url> -->
+					<layout>default</layout>
+				</repository>
 
-		<snapshotRepository>
-			<id>jena-repo-dev</id>
-			<name>Jena development repo</name>
-			<url>sftp://openjena.org/var/repo-dev</url>
-			<layout>default</layout>
-		</snapshotRepository>
+				<snapshotRepository>
+					<id>jena-repo-dev</id>
+					<name>Jena development repo</name>
+					<url>sftp://openjena.org/var/repo-dev</url>
+					<layout>default</layout>
+				</snapshotRepository>
 
-	</distributionManagement>
+			</distributionManagement>
+		</profile>
+	</profiles>
 </project>
