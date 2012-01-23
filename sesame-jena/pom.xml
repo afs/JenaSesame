@@ -11,6 +11,10 @@
 	<artifactId>sesame-jena</artifactId>
 	<dependencies>
 		<dependency>
+			<groupId>org.openjena</groupId>
+			<artifactId>jena-sesame-common</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.jena</groupId>
 			<artifactId>jena-core</artifactId>
 		</dependency>

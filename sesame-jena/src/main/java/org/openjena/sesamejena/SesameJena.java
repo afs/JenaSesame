@@ -6,9 +6,17 @@
 
 package org.openjena.sesamejena;
 
+import org.openjena.sesamejena.impl.GraphModel;
+import org.openrdf.model.Graph;
+
+import com.hp.hpl.jena.rdf.model.Model;
+
 public class SesameJena
 {
-
+    public static Graph createGraph(Model model)
+    {
+        return new GraphModel(model);
+    }
 }
 
 /*

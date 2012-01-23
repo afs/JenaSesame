@@ -17,6 +17,10 @@ import org.openrdf.model.ValueFactory ;
 import com.hp.hpl.jena.graph.Node ;
 import com.hp.hpl.jena.graph.Triple ;
 import com.hp.hpl.jena.rdf.model.AnonId ;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.RDFNode;
 
 public class Convert
 {
@@ -29,6 +33,11 @@ public class Convert
         if ( value instanceof BNode )
             return bnodeToNode((BNode)value) ; 
         throw new IllegalArgumentException("Not a concrete value") ;
+    }
+    
+    public static Node resourceToNode(Resource resource)
+    {
+        return valueToNode(resource);
     }
     
     public static Node bnodeToNode(BNode value)
@@ -53,10 +62,19 @@ public class Convert
 
     public static Triple statementToTriple(Statement stmt)
     {
-        Node s = Convert.valueToNode(stmt.getSubject()) ;
+        Node s = Convert.resourceToNode(stmt.getSubject()) ;
         Node p = Convert.uriToNode(stmt.getPredicate()) ;
         Node o = Convert.valueToNode(stmt.getObject()) ;            
         return new Triple(s,p,o) ;
+    }
+    
+    public static com.hp.hpl.jena.rdf.model.Statement statementToJenaStatement(Model nextModel, Statement stmt)
+    {
+        com.hp.hpl.jena.rdf.model.Resource s = (com.hp.hpl.jena.rdf.model.Resource)Convert.resourceToNode(stmt.getSubject()) ;
+        Property p = (Property)Convert.uriToNode(stmt.getPredicate()) ;
+        RDFNode o = (RDFNode)Convert.valueToNode(stmt.getObject()) ;            
+        
+        return nextModel.createStatement(s, p, o);
     }
     
     public static Statement tripleToStatement(ValueFactory factory, Triple triple)
