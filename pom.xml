@@ -14,6 +14,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<module>jena-sesame</module>
 		<module>sesame-jena</module>
 		<module>jena-sesame-examples</module>
+		<module>jena-sesame-common</module>
 	</modules>
 
 	<description>Jena API over a Sesame repository</description>
@@ -61,6 +62,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 				<version>${ver.jenasesame}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>org.openjena</groupId>
+				<artifactId>jena-sesame-common</artifactId>
+				<version>${ver.jenasesame}</version>
+			</dependency>
+			
 			<!-- Jena and ARQ - including testing support -->
 
 			<dependency>
@@ -99,6 +106,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			</dependency>
 
 			<!-- OpenRDF Sesame -->
+
+			<dependency>
+				<groupId>org.openrdf.sesame</groupId>
+				<artifactId>sesame-model</artifactId>
+				<version>${ver.sesame}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>org.openrdf.sesame</groupId>
@@ -208,7 +221,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 						<!-- include org.apache.jena.query,org.apache.jena.update,org.apache.jena.query.larq -->
 						<!-- Exclude the implementation -->
 						<includePackageNames>org.openjena.jenasesame,org.openjena.sesamejena</includePackageNames>
-						<bottom>Copyright &#169; 2009 Talis Information Ltd</bottom>
+						<bottom>Copyright © 2009 Talis Information Ltd</bottom>
 					</configuration>
 				</plugin>
 

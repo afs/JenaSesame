@@ -9,6 +9,7 @@ package org.openjena.jenasesame.impl;
 
 import org.openjena.atlas.io.IndentedWriter ;
 import org.openjena.atlas.lib.NotImplemented ;
+import org.openjena.jenasesame.util.Convert;
 import org.openrdf.model.Value ;
 import org.openrdf.query.BindingSet ;
 import org.openrdf.query.QueryEvaluationException ;

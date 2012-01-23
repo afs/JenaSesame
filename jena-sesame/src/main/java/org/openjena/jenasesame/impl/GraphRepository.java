@@ -6,6 +6,7 @@
 
 package org.openjena.jenasesame.impl;
 
+import org.openjena.jenasesame.util.Convert;
 import org.openrdf.model.Resource ;
 import org.openrdf.model.Statement ;
 import org.openrdf.model.URI ;
@@ -64,8 +65,7 @@ public class GraphRepository extends com.hp.hpl.jena.sparql.graph.GraphBase2
         
         try
         {
-            Statement stmt = valueFactory.createStatement(subj, pred, obj) ;
-            connection.add(stmt, contexts) ; 
+            connection.add(subj, pred, obj, contexts) ; 
         } catch (RepositoryException ex)
         {
             ex.printStackTrace(System.err) ;
@@ -92,8 +92,7 @@ public class GraphRepository extends com.hp.hpl.jena.sparql.graph.GraphBase2
         
         try
         {
-            Statement stmt = valueFactory.createStatement(subj, pred, obj) ;
-            connection.remove(stmt, contexts) ;
+            connection.remove(subj, pred, obj, contexts) ;
         } catch (RepositoryException ex)
         {
             ex.printStackTrace(System.err) ;

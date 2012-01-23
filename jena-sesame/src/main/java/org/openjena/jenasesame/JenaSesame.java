@@ -49,7 +49,7 @@ public class JenaSesame
     }
     
     /** Create a model that is backed by a repository.
-     *  The model is the triples seen with specificied context.
+     *  The model is the triples seen with specified context.
      */ 
     public static Model createModel(RepositoryConnection connection, Resource context)
     { 

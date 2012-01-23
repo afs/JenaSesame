@@ -11,6 +11,11 @@
 	<artifactId>jena-sesame</artifactId>
 	<dependencies>
 		<dependency>
+			<groupId>org.openjena</groupId>
+			<artifactId>jena-sesame-common</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.apache.jena</groupId>
 			<artifactId>jena-core</artifactId>
 		</dependency>
@@ -76,7 +81,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
@@ -86,7 +91,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>

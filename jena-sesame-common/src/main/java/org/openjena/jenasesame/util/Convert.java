@@ -4,7 +4,7 @@
  * [See end of file]
  */
 
-package org.openjena.jenasesame.impl;
+package org.openjena.jenasesame.util;
 
 import org.openrdf.model.BNode ;
 import org.openrdf.model.Literal ;
@@ -18,7 +18,7 @@ import com.hp.hpl.jena.graph.Node ;
 import com.hp.hpl.jena.graph.Triple ;
 import com.hp.hpl.jena.rdf.model.AnonId ;
 
-class Convert
+public class Convert
 {
     public static Node valueToNode(Value value)
     {
@@ -79,7 +79,7 @@ class Convert
             return nodeURIToValue(factory, node) ;
         if ( node.isBlank() )
             return nodeBlankToValue(factory, node) ;
-        throw new IllegalArgumentException("Not a URI nor a blank node") ;
+        throw new IllegalArgumentException("Neither a URI nor a blank node") ;
     }
 
     public static BNode nodeBlankToValue(ValueFactory factory, Node node)

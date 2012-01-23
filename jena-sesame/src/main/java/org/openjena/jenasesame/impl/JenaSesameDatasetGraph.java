@@ -9,6 +9,7 @@ package org.openjena.jenasesame.impl;
 
 import java.util.Iterator ;
 
+import org.openjena.jenasesame.util.Convert;
 import org.openrdf.model.Resource ;
 import org.openrdf.repository.RepositoryConnection ;
 import org.openrdf.repository.RepositoryException ;
