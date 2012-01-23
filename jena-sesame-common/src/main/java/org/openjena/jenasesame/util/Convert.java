@@ -59,6 +59,11 @@ public class Convert
         return new Triple(s,p,o) ;
     }
     
+    public static Statement tripleToStatement(ValueFactory factory, Triple triple)
+    {
+        return factory.createStatement(nodeToValueResource(factory, triple.getSubject()), nodeURIToValue(factory, triple.getPredicate()), nodeToValue(factory, triple.getObject()));
+    }
+    
     // ----
     // Problems with the ValueFactory
     
