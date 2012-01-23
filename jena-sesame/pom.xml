@@ -48,7 +48,33 @@
 
 		<dependency>
 			<groupId>org.openrdf.sesame</groupId>
-			<artifactId>sesame-runtime</artifactId>
+			<artifactId>sesame-model</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-sail-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-repository-sail</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-sail-memory</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>sesame-queryparser-serql</artifactId>
+					<groupId>org.openrdf.sesame</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-repository-api</artifactId>
 		</dependency>
 
 		<dependency>

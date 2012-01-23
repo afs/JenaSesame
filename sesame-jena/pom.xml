@@ -47,12 +47,7 @@
 
 		<dependency>
 			<groupId>org.openrdf.sesame</groupId>
-			<artifactId>sesame-runtime</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.openrdf.sesame</groupId>
-			<artifactId>sesame-sail-nativerdf</artifactId>
+			<artifactId>sesame-model</artifactId>
 		</dependency>
 
 		<!-- Choose logging -->

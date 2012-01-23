@@ -115,7 +115,25 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 
 			<dependency>
 				<groupId>org.openrdf.sesame</groupId>
-				<artifactId>sesame-runtime</artifactId>
+				<artifactId>sesame-sail-api</artifactId>
+				<version>${ver.sesame}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openrdf.sesame</groupId>
+				<artifactId>sesame-repository-sail</artifactId>
+				<version>${ver.sesame}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openrdf.sesame</groupId>
+				<artifactId>sesame-sail-memory</artifactId>
+				<version>${ver.sesame}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openrdf.sesame</groupId>
+				<artifactId>sesame-repository-api</artifactId>
 				<version>${ver.sesame}</version>
 			</dependency>
 
