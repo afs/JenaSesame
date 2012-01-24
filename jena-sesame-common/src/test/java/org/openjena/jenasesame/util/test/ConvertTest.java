@@ -17,6 +17,7 @@ import org.openrdf.model.ValueFactory;
 import org.openrdf.model.impl.ValueFactoryImpl;
 
 import com.hp.hpl.jena.datatypes.TypeMapper;
+import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
@@ -174,11 +175,13 @@ public class ConvertTest
      * Test method for
      * {@link org.openjena.jenasesame.util.Convert#bnodeToNode(org.openrdf.model.BNode)}.
      */
-    @Ignore
     @Test
     public void testBnodeToNode()
     {
-        Assert.fail("Not yet implemented"); // TODO
+        Node node = Convert.bnodeToNode(testSesameObjectBlankNode1);
+        
+        Assert.assertNotNull(node);
+        Assert.assertEquals(testSesameObjectBlankNode1.getID(), node.getBlankNodeLabel());
     }
     
     /**
