@@ -56,12 +56,12 @@ public class Convert
         }
     }
     
-    public static BNode nodeBlankToValue(final ValueFactory factory, final Node node)
+    public static BNode nodeBlankToBNode(final ValueFactory factory, final Node node)
     {
         return factory.createBNode(node.getBlankNodeLabel());
     }
     
-    public static Value nodeLiteralToValue(final ValueFactory factory, final Node node)
+    public static Value nodeLiteralToLiteral(final ValueFactory factory, final Node node)
     {
         if(node.getLiteralDatatype() != null)
         {
@@ -80,7 +80,7 @@ public class Convert
     {
         if(node.isLiteral())
         {
-            return Convert.nodeLiteralToValue(factory, node);
+            return Convert.nodeLiteralToLiteral(factory, node);
         }
         if(node.isURI())
         {
@@ -88,7 +88,7 @@ public class Convert
         }
         if(node.isBlank())
         {
-            return Convert.nodeBlankToValue(factory, node);
+            return Convert.nodeBlankToBNode(factory, node);
         }
         throw new IllegalArgumentException("Not a concrete node");
     }
@@ -101,7 +101,7 @@ public class Convert
         }
         if(node.isBlank())
         {
-            return Convert.nodeBlankToValue(factory, node);
+            return Convert.nodeBlankToBNode(factory, node);
         }
         throw new IllegalArgumentException("Neither a URI nor a blank node");
     }

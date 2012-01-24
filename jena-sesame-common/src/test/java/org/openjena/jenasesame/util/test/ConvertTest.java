@@ -295,24 +295,24 @@ public class ConvertTest
     
     /**
      * Test method for
-     * {@link org.openjena.jenasesame.util.Convert#nodeBlankToValue(org.openrdf.model.ValueFactory, com.hp.hpl.jena.graph.Node)}
+     * {@link org.openjena.jenasesame.util.Convert#nodeBlankToBNode(org.openrdf.model.ValueFactory, com.hp.hpl.jena.graph.Node)}
      * .
      */
     @Ignore
     @Test
-    public void testNodeBlankToValue()
+    public void testNodeBlankToBNode()
     {
         Assert.fail("Not yet implemented"); // TODO
     }
     
     /**
      * Test method for
-     * {@link org.openjena.jenasesame.util.Convert#nodeLiteralToValue(org.openrdf.model.ValueFactory, com.hp.hpl.jena.graph.Node)}
+     * {@link org.openjena.jenasesame.util.Convert#nodeLiteralToLiteral(org.openrdf.model.ValueFactory, com.hp.hpl.jena.graph.Node)}
      * .
      */
     @Ignore
     @Test
-    public void testNodeLiteralToValue()
+    public void testNodeLiteralToLiteral()
     {
         Assert.fail("Not yet implemented"); // TODO
     }
