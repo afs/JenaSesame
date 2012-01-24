@@ -53,7 +53,7 @@ public class ConvertTest
     private URI testSesameObjectUri1;
     private BNode testSesameObjectBlankNode1;
     private Statement testStatementURIURIURI1;
-    private Value testSesameObjectPlainLiteral1;
+    private org.openrdf.model.Literal testSesameObjectPlainLiteral1;
     private org.openrdf.model.Literal testSesameObjectTypedLiteral1;
     private Statement testStatementURIURIPlainLiteral1;
     private Statement testStatementURIURITypedLiteral1;
@@ -188,11 +188,49 @@ public class ConvertTest
      * Test method for
      * {@link org.openjena.jenasesame.util.Convert#literalToNode(org.openrdf.model.Literal)}.
      */
-    @Ignore
     @Test
-    public void testLiteralToNode()
+    public void testLiteralToNodeLanguage()
     {
-        Assert.fail("Not yet implemented"); // TODO
+        Node node = Convert.literalToNode(testSesameObjectLanguageLiteral1);
+        
+        Assert.assertNotNull(node);
+        Assert.assertEquals(testSesameObjectLanguageLiteral1.getLabel(), node.getLiteralLexicalForm());
+        Assert.assertEquals(testSesameObjectLanguageLiteral1.getLanguage(), node.getLiteralLanguage());
+        Assert.assertNull(testSesameObjectLanguageLiteral1.getDatatype());
+        Assert.assertNull(node.getLiteralDatatype());
+    }
+    
+    /**
+     * Test method for
+     * {@link org.openjena.jenasesame.util.Convert#literalToNode(org.openrdf.model.Literal)}.
+     */
+    @Test
+    public void testLiteralToNodePlain()
+    {
+        Node node = Convert.literalToNode(testSesameObjectPlainLiteral1);
+        
+        Assert.assertNotNull(node);
+        Assert.assertEquals(testSesameObjectPlainLiteral1.getLabel(), node.getLiteralLexicalForm());
+        Assert.assertEquals("", node.getLiteralLanguage());
+        Assert.assertNull(testSesameObjectLanguageLiteral1.getDatatype());
+        Assert.assertNull(node.getLiteralDatatype());
+    }
+    
+    /**
+     * Test method for
+     * {@link org.openjena.jenasesame.util.Convert#literalToNode(org.openrdf.model.Literal)}.
+     */
+    @Test
+    public void testLiteralToNodeTyped()
+    {
+        Node node = Convert.literalToNode(testSesameObjectTypedLiteral1);
+        
+        Assert.assertNotNull(node);
+        Assert.assertEquals(testSesameObjectTypedLiteral1.getLabel(), node.getLiteralLexicalForm());
+        Assert.assertEquals("", node.getLiteralLanguage());
+        Assert.assertNotNull(testSesameObjectTypedLiteral1.getDatatype());
+        Assert.assertNotNull(node.getLiteralDatatype());
+        Assert.assertEquals(testSesameObjectTypedLiteral1.getDatatype().stringValue(), node.getLiteralDatatypeURI());
     }
     
     /**

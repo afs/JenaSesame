@@ -53,7 +53,7 @@ public class SesameJenaTest
     private URI testSesameObjectUri1;
     private BNode testSesameObjectBlankNode1;
     private Statement testStatementURIURIURI1;
-    private Value testSesameObjectPlainLiteral1;
+    private org.openrdf.model.Literal testSesameObjectPlainLiteral1;
     private org.openrdf.model.Literal testSesameObjectTypedLiteral1;
     private Statement testStatementURIURIPlainLiteral1;
     private Statement testStatementURIURITypedLiteral1;
