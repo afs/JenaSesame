@@ -79,14 +79,14 @@ public class GraphModel extends GraphImpl implements Graph, Collection<Statement
      * @see java.util.Collection#contains(java.lang.Object)
      */
     @Override
-    public boolean contains(Object arg0)
+    public boolean contains(Object nextObject)
     {
-        if(!(arg0 instanceof Statement))
+        if(!(nextObject instanceof Statement))
         {
             return false;
         }
         
-        Statement stmt = (Statement)arg0;
+        Statement stmt = (Statement)nextObject;
         
         return this.jenaModel.contains(Convert.statementToJenaStatement(this.jenaModel, stmt));
     }

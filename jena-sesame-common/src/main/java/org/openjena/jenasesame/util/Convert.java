@@ -24,6 +24,51 @@ import com.hp.hpl.jena.rdf.model.RDFNode;
 
 public class Convert
 {
+    public static com.hp.hpl.jena.rdf.model.Resource resourceToResource(Model nextModel, Resource resource)
+    {
+        if(resource instanceof URI)
+        {
+            return nextModel.createResource(resource.stringValue());
+        }
+        else
+        {
+            return nextModel.createResource(new AnonId(resource.stringValue()));
+        }
+    }
+    
+    public static com.hp.hpl.jena.rdf.model.Property uriToProperty(Model nextModel, URI resource)
+    {
+        return nextModel.createProperty(resource.stringValue());
+    }
+    
+    public static RDFNode valueToRDFNode(Model nextModel, Value value)
+    {
+        if(value instanceof Resource)
+        {
+            return resourceToResource(nextModel, (Resource)value);
+        }
+        else
+        {
+            return literalToRDFNode(nextModel, (Literal)value);
+        }
+    }
+    
+    public static RDFNode literalToRDFNode(Model nextModel, Literal value)
+    {
+        if(value.getDatatype() != null)
+        {
+            return nextModel.createTypedLiteral(value.stringValue(), value.getDatatype().stringValue());
+        }
+        else if(value.getLanguage() != null && !"".equals(value.getLanguage()))
+        {
+            return nextModel.createLiteral(value.stringValue(), value.getLanguage());
+        }
+        else
+        {
+            return nextModel.createLiteral(value.stringValue());
+        }
+    }
+
     public static Node valueToNode(Value value)
     {
         if ( value instanceof Literal )
@@ -70,9 +115,9 @@ public class Convert
     
     public static com.hp.hpl.jena.rdf.model.Statement statementToJenaStatement(Model nextModel, Statement stmt)
     {
-        com.hp.hpl.jena.rdf.model.Resource s = (com.hp.hpl.jena.rdf.model.Resource)Convert.resourceToNode(stmt.getSubject()) ;
-        Property p = (Property)Convert.uriToNode(stmt.getPredicate()) ;
-        RDFNode o = (RDFNode)Convert.valueToNode(stmt.getObject()) ;            
+        com.hp.hpl.jena.rdf.model.Resource s = Convert.resourceToResource(nextModel, stmt.getSubject());
+        Property p = Convert.uriToProperty(nextModel, stmt.getPredicate()) ;
+        RDFNode o = Convert.valueToRDFNode(nextModel, stmt.getObject()) ;            
         
         return nextModel.createStatement(s, p, o);
     }
