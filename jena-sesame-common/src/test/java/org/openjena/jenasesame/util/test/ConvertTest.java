@@ -169,7 +169,7 @@ public class ConvertTest
         this.testSesameObjectTypedLiteral1 = null;
         this.testSesameObjectLanguageLiteral1 = null;
     }
-   
+    
     /**
      * Test method for
      * {@link org.openjena.jenasesame.util.Convert#bnodeToNode(org.openrdf.model.BNode)}.
@@ -283,7 +283,8 @@ public class ConvertTest
     @Test
     public void testResourceToResourceBNode()
     {
-        Resource resourceToResource = Convert.resourceToResource(this.testModelSingleURIURIBlankNode, this.testSesameObjectBlankNode1);
+        final Resource resourceToResource =
+                Convert.resourceToResource(this.testModelSingleURIURIBlankNode, this.testSesameObjectBlankNode1);
         
         Assert.assertNotNull(resourceToResource);
         Assert.assertEquals(this.testSesameObjectBlankNode1.getID(), resourceToResource.getId().getLabelString());
@@ -297,7 +298,8 @@ public class ConvertTest
     @Test
     public void testResourceToResourceURI()
     {
-        Resource resourceToResource = Convert.resourceToResource(this.testModelSingleURIURIURI, this.testSesameObjectUri1);
+        final Resource resourceToResource =
+                Convert.resourceToResource(this.testModelSingleURIURIURI, this.testSesameObjectUri1);
         
         Assert.assertNotNull(resourceToResource);
         Assert.assertEquals(this.testSesameObjectUri1.stringValue(), resourceToResource.getURI());
@@ -350,15 +352,27 @@ public class ConvertTest
     }
     
     /**
+     * Tests whether the Convert.uriToProperty method restricts the URIs that can be used based on
+     * the arbitrary XML and hence, RDF/XML restrictions on how URI endings appear.
+     * 
+     * If Convert was using ResourceFactory.createProperty() this test would not succeed, however,
+     * it is using Model.createProperty which does not appear to suffer from the ResourceFactory
+     * weakness so it succeeds.
+     * 
      * Test method for
      * {@link org.openjena.jenasesame.util.Convert#uriToProperty(com.hp.hpl.jena.rdf.model.Model, org.openrdf.model.URI)}
      * .
      */
-    @Ignore
     @Test
     public void testUriToProperty()
     {
-        Assert.fail("Not yet implemented"); // TODO
+        Property validXmlProperty = Convert.uriToProperty(this.testModelSingleURIURIURI, this.testSesamePredicateUri1);
+        Assert.assertNotNull(validXmlProperty);
+        Assert.assertEquals(this.testSesamePredicateUri1.stringValue(), validXmlProperty.getURI());
+        
+        Property invalidXmlProperty = Convert.uriToProperty(this.testModelSingleURIURIURI, this.testSesameSubjectUri1);
+        Assert.assertNotNull(invalidXmlProperty);
+        Assert.assertEquals(this.testSesameSubjectUri1.stringValue(), invalidXmlProperty.getURI());
     }
     
     /**
