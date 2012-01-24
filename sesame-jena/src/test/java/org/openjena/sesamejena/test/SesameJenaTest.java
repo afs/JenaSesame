@@ -17,6 +17,7 @@ import org.openrdf.model.ValueFactory;
 import org.openrdf.model.impl.ValueFactoryImpl;
 
 import com.hp.hpl.jena.datatypes.TypeMapper;
+import com.hp.hpl.jena.rdf.model.AnonId;
 import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
@@ -77,8 +78,6 @@ public class SesameJenaTest
         this.testTypedLiteral1 =
                 ResourceFactory.createTypedLiteral("123678",
                         TypeMapper.getInstance().getSafeTypeByName(XSD.integer.getURI()));
-        this.testBlankNode1 = ResourceFactory.createResource();
-        
         this.testModelEmpty = ModelFactory.createDefaultModel();
         
         this.testModelSingleURIURITypedLiteral = ModelFactory.createDefaultModel();
@@ -99,7 +98,9 @@ public class SesameJenaTest
                 this.testLanguageLiteral1);
         
         this.testModelSingleURIURIBlankNode = ModelFactory.createDefaultModel();
+        this.testBlankNode1 = this.testModelSingleURIURIBlankNode.createResource(new AnonId("myTestBlankNodeId987654"));
         this.testModelSingleURIURIBlankNode.add(this.testSubjectUri1, this.testPredicateUri1, this.testBlankNode1);
+        
         
         this.testModelSingleURIURIURI = ModelFactory.createDefaultModel();
         this.testModelSingleURIURIURI.add(this.testSubjectUri1, this.testPredicateUri1, this.testObjectUri1);
@@ -108,7 +109,7 @@ public class SesameJenaTest
         this.testSesamePredicateUri1 =
                 this.testValueFactory.createURI("http://test.example.org/test/property/uri/aValidJenaXMLUri1");
         this.testSesameObjectUri1 = this.testValueFactory.createURI("http://test.example.org/test/object/uri/1");
-        this.testSesameObjectBlankNode1 = this.testValueFactory.createBNode();
+        this.testSesameObjectBlankNode1 = this.testValueFactory.createBNode("myTestBlankNodeId987654");
         this.testSesameObjectPlainLiteral1 = this.testValueFactory.createLiteral("My Test Plain Literal!");
         this.testSesameObjectTypedLiteral1 =
                 this.testValueFactory.createLiteral("123678", this.testValueFactory.createURI(XSD.integer.getURI()));
