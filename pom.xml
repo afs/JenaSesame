@@ -42,7 +42,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<ver.jenasesame>0.1.0-SNAPSHOT</ver.jenasesame>
 		<ver.jena>2.7.0-incubating</ver.jena>
 		<ver.arq>2.9.0-incubating</ver.arq>
-		<ver.sesame>2.6.4</ver.sesame>
+		<ver.sesame>2.6.5</ver.sesame>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
