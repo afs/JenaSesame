@@ -1,0 +1,5 @@
+mvn clean
+mvn dependency:resolve dependency:sources
+mvn eclipse:eclipse -DbuildOutputDirectory=classes
+  But add src-examples in .classpath
+<classpathentry including="**/*.java" kind="src" path="src-examples"/>

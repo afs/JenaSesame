@@ -1,6 +1,6 @@
 ==== JenaSesame
 
-This package aims to provide a stable, long-term bridge bwteen the two systems.
+This package aims to provide a stable, long-term bridge between the two systems.
  
 == Documentation
 
@@ -15,7 +15,7 @@ Artifact:   jena-sesame
 
 == Source Code 
 
-http://github.com/afs/JenaSesame.git
+https://github.com/afs/JenaSesame.git
 
 == Other
 
