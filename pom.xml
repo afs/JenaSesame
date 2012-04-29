@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<project>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.openjena</groupId>
@@ -10,17 +11,21 @@
   <version>0.1.0-SNAPSHOT</version>
 
   <description>Jena API over a Sesame reposiroty</description>
-  <url>http://openjena.org/ARQ</url>
+  <url>http://github.com/afs/JenaSesame</url>
 
   <organization>
-    <name>Hewlett-Packard</name>
-    <url>http://www.hp.com/</url>
+    <name>Jena</name>
+    <url>http://jena.apache.org/</url>
   </organization>
 
   <licenses>
     <license>
       <name>BSD-style license</name>
       <url>http://openjena.org/license.html</url>
+      <!-- To become ...
+      <name>Apache Software License</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+      -->
     </license>
   </licenses>
 
@@ -34,8 +39,10 @@
     <ver.jena>2.7.0-incubating</ver.jena>
     <ver.arq>2.9.0-incubating</ver.arq>
     <ver.sesame>2.6.2</ver.sesame>
+    <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ssZ</maven.build.timestamp.format>
+    <build.time.xsd>${maven.build.timestamp}</build.time.xsd> 
   </properties>
-
+  
   <dependencies>
 
     <!-- Jena and ARQ - including testing support -->
@@ -108,11 +115,6 @@
     <sourceDirectory>src</sourceDirectory>
     <testSourceDirectory>src-test</testSourceDirectory>
     
-    <!-- The filter file is written by antrun -->
-    <filters>
-      <filter>${project.basedir}/target/filter.properties</filter>
-    </filters>
-
     <resources>
       <resource>
         <targetPath>org.openjena.jenasesame</targetPath>
@@ -213,38 +215,6 @@
       
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>ant-timestamp</id>
-            <phase>generate-resources</phase>
-            <configuration>
-              <tasks>
-                <mkdir dir="${project.basedir}/target"/>
-                <tstamp>
-                  <format property="build.time.xsd"  pattern="yyyy-MM-dd'T'HH:mm:ssZ"/>
-                  <format property="build.time.txt"  pattern="yyyy-MM-dd HH:mm z"/>
-                </tstamp>
-                <echo file="${project.basedir}/target/filter.properties">
-#begin
-build.time.xsd=${build.time.xsd}
-build.time.txt=${build.time.txt}
-#end
-                </echo>
-                <echo message="version=${project.version}"/>
-                <echo message="build.time=${build.time.txt}"/>
-              </tasks>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-          <!-- Another task, another execution -->
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
         <configuration>
           <outputDirectory>lib2</outputDirectory>
@@ -260,19 +230,26 @@ build.time.txt=${build.time.txt}
 
   <repositories>
     <repository>
-      <id>apache-repo.releases</id>
-      <name>Apache Release Repository</name>
-      <url>https://repository.apache.org/content/repositories/releases/</url>
+      <id>apache.snapshots</id>
+      <name>Apache Snapshot Repository</name>
+      <url>http://repository.apache.org/snapshots</url>
       <releases>
-	<enabled>false</enabled>
+        <enabled>false</enabled>
+      </releases>
+    </repository>
+
+    <repository>
+      <id>apache.releases</id>
+      <name>Apache Release Repository</name>
+      <url>https://repository.apache.org/content/repositories/releases</url>
+      <releases>
+	<enabled>true</enabled>
       </releases>
       <snapshots>
-	<enabled>true</enabled>
-	<updatePolicy>daily</updatePolicy>
-       <checksumPolicy>fail</checksumPolicy>
+	<enabled>false</enabled>
       </snapshots>
     </repository>
-    
+
     <repository>
       <id>repo-openrdf</id>
       <name>OpenRDF releases</name>
