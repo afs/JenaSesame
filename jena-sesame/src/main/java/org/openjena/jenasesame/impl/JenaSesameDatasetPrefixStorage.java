@@ -141,7 +141,7 @@ public class JenaSesameDatasetPrefixStorage implements DatasetPrefixStorage
     }
 
     @Override
-    public void removeFromPrefixMap(String graphName, String prefix, String uri)
+    public void removeFromPrefixMap(String graphName, String prefix)
     {
         try
         {
