@@ -1,6 +1,7 @@
 /*
  * (c) Copyright 2009 Talis Information Ltd.
  * (c) Copyright 2010, 2011, 2012 Epimorphics Ltd.
+ * (c) Copyright 2013, Czech Technical University in Prague, Czech Republic
  * All rights reserved.
  * [See end of file]
  */
@@ -19,7 +20,6 @@ import org.openrdf.repository.RepositoryResult ;
 
 import com.hp.hpl.jena.shared.JenaException ;
 import com.hp.hpl.jena.shared.PrefixMapping ;
-import com.hp.hpl.jena.sparql.ARQNotImplemented ;
 import com.hp.hpl.jena.sparql.core.DatasetPrefixStorage ;
 
 public class JenaSesameDatasetPrefixStorage implements DatasetPrefixStorage
@@ -53,7 +53,7 @@ public class JenaSesameDatasetPrefixStorage implements DatasetPrefixStorage
             throw new JenaException(ex) ;
         }
     }
-    
+
     private Set<Namespace> getNamespaces()
     {
         try
@@ -95,13 +95,19 @@ public class JenaSesameDatasetPrefixStorage implements DatasetPrefixStorage
     @Override
     public void insertPrefix(String graphName, String prefix, String uri)
     {
-        throw new UnsupportedOperationException("Not modifiable") ;
+        if ( prefixMapping.getNsPrefixURI(prefix) != null ) {
+            throw new UnsupportedOperationException("Rewriting prefixes not allowed");
+        }
+
+        prefixMapping.getNsPrefixMap().put(prefix,uri);
     }
 
     @Override
     public void loadPrefixMapping(String graphName, PrefixMapping pmap)
     {
-        throw new ARQNotImplemented("loadPrefixMapping") ;
+        for(String prefix : pmap.getNsPrefixMap().keySet()) {
+            insertPrefix(graphName, prefix, pmap.getNsPrefixURI(prefix));
+        }
     }
 
     @Override
