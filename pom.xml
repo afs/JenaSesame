@@ -8,7 +8,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<artifactId>jena-sesame-parent</artifactId>
 	<packaging>pom</packaging>
 	<name>JenaSesame</name>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.1.1-SNAPSHOT</version>
 
 	<modules>
 		<module>jena-sesame</module>
@@ -39,7 +39,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	</scm>
 
 	<properties>
-		<ver.jenasesame>0.1.0-SNAPSHOT</ver.jenasesame>
+		<ver.jenasesame>0.1.1-SNAPSHOT</ver.jenasesame>
 		<ver.jena>2.7.3</ver.jena>
 		<ver.arq>2.9.3</ver.arq>
 		<ver.sesame>2.6.9</ver.sesame>
@@ -263,6 +263,13 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 				</plugin>
 			</plugins>
 		</pluginManagement>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>2.3</version>
+            </extension>
+        </extensions>
 	</build>
 
 	<repositories>
@@ -333,7 +340,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<profile>
 			<id>openjena-deploy</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
 			</activation>
 			<distributionManagement>
 				<downloadUrl>http://openjena.org/repo-dev</downloadUrl>
@@ -358,5 +365,18 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 
 			</distributionManagement>
 		</profile>
+
+        <profile>
+            <id>krizik-deploy</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <distributionManagement>
+                <repository>
+                    <id>krizik-private</id>
+                    <url>scp://kremen@krizik.felk.cvut.cz/var/www/m2repo-private</url>
+                </repository>
+            </distributionManagement>
+        </profile>
 	</profiles>
 </project>
