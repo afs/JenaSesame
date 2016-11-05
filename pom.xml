@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.openjena</groupId>
   <artifactId>jena-sesame</artifactId>
   <packaging>jar</packaging>
   <name>JenaSesame</name>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>0.2.0-SNAPSHOT</version>
 
   <description>Jena API over a Sesame reposiroty</description>
   <url>http://github.com/afs/JenaSesame</url>
@@ -23,8 +24,8 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
       <name>BSD-style license</name>
       <url>http://openjena.org/license.html</url>
       <!-- To become ...
-      <name>Apache Software License</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+           <name>Apache Software License</name>
+           <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
       -->
     </license>
   </licenses>
@@ -36,51 +37,34 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 
   <properties>
     <this.root>${project.artifactId}-${project.version}</this.root>
-    <ver.jena>2.7.0-incubating</ver.jena>
-    <ver.arq>2.9.0-incubating</ver.arq>
-    <ver.sesame>2.6.2</ver.sesame>
+    <ver.jena>3.1.1</ver.jena>
+    <ver.sesame>2.7.6</ver.sesame>
     <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ssZ</maven.build.timestamp.format>
     <build.time.xsd>${maven.build.timestamp}</build.time.xsd> 
   </properties>
   
   <dependencies>
 
-    <!-- Jena and ARQ - including testing support -->
-
     <dependency>
       <groupId>org.apache.jena</groupId>
-      <artifactId>jena-core</artifactId>
+      <artifactId>jena-arq</artifactId>
       <version>${ver.jena}</version>
     </dependency>
 
     <dependency>
       <groupId>org.apache.jena</groupId>
       <artifactId>jena-core</artifactId>
-      <classifier>tests</classifier>
       <version>${ver.jena}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.jena</groupId>
-      <artifactId>jena-arq</artifactId>
-      <version>${ver.arq}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.jena</groupId>
-      <artifactId>jena-arq</artifactId>
       <classifier>tests</classifier>
-      <version>${ver.arq}</version>
-    </dependency>
-
-     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>[4.9,)</version>
       <scope>test</scope>
     </dependency>
 
-    <!-- OpenRDF Sesame -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
 
     <dependency>
       <groupId>org.openrdf.sesame</groupId>
@@ -99,43 +83,42 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 
     <dependency>
       <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
-      <version>[1.5.8,)</version>
-    </dependency>
-
-    <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>[1.2.12,)</version>
+      <artifactId>slf4j-jdk14</artifactId>
+      <version>1.7.21</version>
     </dependency>
 
   </dependencies>
 
   <build>
-    <sourceDirectory>src</sourceDirectory>
-    <testSourceDirectory>src-test</testSourceDirectory>
-    
-    <resources>
-      <resource>
-        <targetPath>org.openjena.jenasesame</targetPath>
-        <filtering>true</filtering>
-        <directory>resources</directory>
-      </resource>
-    </resources>
 
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.6</version>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <encoding>UTF-8</encoding>
+          <debug>true</debug>
+          <debuglevel>source,lines,vars</debuglevel>
+          <optimize>true</optimize>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.12.4</version>
         <configuration>
           <includes>
             <include>org/openjena/jenasesame/TS_JenaSesame.java</include>
@@ -146,6 +129,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
+        <version>3.0.0</version>
         <executions> 
           <execution>
             <id>attach-sources</id>
@@ -163,6 +147,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.10.3</version>
         <executions>
           <execution>
             <id>attach-javadocs</id>
@@ -178,7 +163,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
           <encoding>UTF-8</encoding>
           <windowtitle>${project.name} ${project.version}</windowtitle>
           <doctitle>${project.name} ${project.version}</doctitle>
-	  <!-- include org.apache.jena.query,org.apache.jena.update,org.apache.jena.query.larq -->
+          <!-- include org.apache.jena.query,org.apache.jena.update,org.apache.jena.query.larq -->
           <!-- Exclude the implementation -->
           <includePackageNames>org.openjena.jenasesame,org.openjena.sesamejena</includePackageNames>
           <bottom>Copyright &#169; 2009 Talis Information Ltd</bottom>
@@ -187,35 +172,8 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <configuration>
-          <descriptors>
-            <descriptor>assembly.xml</descriptor>
-          </descriptors>
-        </configuration>
-        <executions>
-          <execution>
-            <id>create-assembly</id>
-            <!-- Better after package because of javadoc, sources (and test-jar if any) -->
-            <phase>verify</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <configuration>
-          <encoding>UTF-8</encoding>
-        </configuration>
-      </plugin>
-      
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.8</version>
         <configuration>
           <outputDirectory>lib2</outputDirectory>
           <overWriteReleases>false</overWriteReleases>
@@ -243,42 +201,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
       <name>Apache Release Repository</name>
       <url>https://repository.apache.org/content/repositories/releases</url>
       <releases>
-	<enabled>true</enabled>
+        <enabled>true</enabled>
       </releases>
       <snapshots>
-	<enabled>false</enabled>
+        <enabled>false</enabled>
       </snapshots>
     </repository>
 
-    <repository>
-      <id>repo-openrdf</id>
-      <name>OpenRDF releases</name>
-      <layout>default</layout>
-      <url>http://repo.aduna-software.org/maven2/releases</url>
-    </repository>
   </repositories>
-
-  <distributionManagement>
-    <downloadUrl>http://openjena.org/repo-dev</downloadUrl>
-
-    <!-- In development - release to development repo -->
-
-    <repository>
-      <id>jena-repo</id>
-      <name>Jena repo</name>
-      <!--<url>sftp://openjena.org/var/repo</url>-->
-      <url>sftp://openjena.org/var/repo-dev</url>
-      <!--<url>file:tmp</url>-->
-      <layout>default</layout>
-    </repository> 
-
-    <snapshotRepository>
-      <id>jena-repo-dev</id>
-      <name>Jena development repo</name>
-      <url>sftp://openjena.org/var/repo-dev</url>
-      <layout>default</layout>
-    </snapshotRepository>
-
-  </distributionManagement>
-
 </project>

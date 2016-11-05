@@ -1,23 +1,12 @@
 ==== JenaSesame
 
-This package aims to provide a stable, long-term bridge bwteen the two systems.
+See CommonRDF for a system-neutral API over RDF (Apache Jena or Eclipse rdf4j).
+
+This package aims to provide a stable, long-term bridge for Jena API
+over Sesame respository.
+
+See the examples.
  
-== Documentation
-
-http://openjena.org/wiki/JenaSesame
-
-== Repository
-
-http://openjena.org/repo-dev
-
-Group:      org.openjena
-Artifact:   jena-sesame
-
 == Source Code 
 
 http://github.com/afs/JenaSesame.git
-
-== Other
-
-http://sourceforge.net/projects/jenasesamemodel/ (Jena API over Sesame repository)
-http://sjadapter.sourceforge.net/ (Sesame API over Jena storage)

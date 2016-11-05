@@ -1,0 +1,93 @@
+/*
+ * (c) Copyright 2009 Talis Information Ltd.
+ * (c) Copyright 2010, 2011, 2012 Epimorphics Ltd.
+ * All rights reserved.
+ * [See end of file]
+ */
+
+package org.openjena.jenasesame;
+
+import org.apache.jena.graph.Graph ;
+import org.apache.jena.query.Dataset ;
+import org.apache.jena.query.DatasetFactory ;
+import org.apache.jena.rdf.model.Model ;
+import org.apache.jena.rdf.model.ModelFactory ;
+import org.apache.jena.sparql.core.DatasetGraph ;
+import org.apache.jena.sparql.engine.QueryEngineFactory ;
+import org.apache.jena.sparql.engine.QueryEngineRegistry ;
+import org.openjena.jenasesame.impl.GraphRepository ;
+import org.openjena.jenasesame.impl.JenaSesameDatasetGraph ;
+import org.openjena.jenasesame.impl.JenaSesameQueryEngineFactory ;
+import org.openrdf.model.Resource ;
+import org.openrdf.repository.RepositoryConnection ;
+
+/** Jena API over Sesame repository */
+public class JenaSesame
+{
+    private static boolean initialized = false ;
+    private static QueryEngineFactory factory = new JenaSesameQueryEngineFactory() ;
+    static { init () ; }
+    
+    private static void init()
+    {
+        if ( initialized == true )
+            return ;
+        initialized = true ;
+        QueryEngineRegistry.addFactory(factory) ;
+    }
+
+    private QueryEngineFactory getQueryEngineFactory() { return factory ; }
+    
+    /** Create a Model that is backed by a repository.
+     *  The model is the triples seen with no specification of the context.  
+     */
+    public static Model createModel(RepositoryConnection connection)
+    { 
+        Graph graph = new GraphRepository(connection) ;
+        return ModelFactory.createModelForGraph(graph) ;
+    }
+    
+    /** Create a model that is backed by a repository.
+     *  The model is the triples seen with specificied context.
+     */ 
+    public static Model createModel(RepositoryConnection connection, Resource context)
+    { 
+        Graph graph =  new GraphRepository(connection, context) ;
+        return ModelFactory.createModelForGraph(graph) ;
+    }
+
+    /** Create a dataset that is backed by a repository */ 
+    public static Dataset createDataset(RepositoryConnection connection)
+    {
+        DatasetGraph dsg = new JenaSesameDatasetGraph(connection) ;
+        return DatasetFactory.wrap(dsg) ;
+    }
+}
+
+/*
+ * (c) Copyright 2009 Talis Information Ltd.
+ * (c) Copyright 2010, 2011, 2012 Epimorphics Ltd.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. The name of the author may not be used to endorse or promote products
+ *    derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ * IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+ * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
