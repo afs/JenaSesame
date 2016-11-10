@@ -23,11 +23,12 @@ import org.openrdf.repository.RepositoryResult;
 
 public class JenaSesameDatasetPrefixStorage implements DatasetPrefixStorage {
     // Only one prefix mapping for the whole repository.
-    private PrefixMapping        prefixMapping = new GraphPrefixesProjection(null, this);
+    private PrefixMapping        prefixMapping;
     private RepositoryConnection connection;
 
     public JenaSesameDatasetPrefixStorage(RepositoryConnection connection) {
         this.connection = connection;
+        prefixMapping = new GraphPrefixesProjection(null, this);
     }
 
     private Set<String> getURIs() {
